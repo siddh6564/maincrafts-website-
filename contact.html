@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MainCrafts – Contact Us</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── CONTACT-PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #0d0d0d 0%, #0f2027 50%, #1a3a3a 100%);
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 55% 55% at 30% 50%, rgba(0,201,167,0.18), transparent);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 2; max-width: 620px; margin: auto; }
+    .page-hero .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,201,167,0.14);
+      border: 1px solid rgba(0,201,167,0.32);
+      color: var(--teal);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 1.1rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800; color: #fff;
+      line-height: 1.1; letter-spacing: -1px; margin-bottom: 1.2rem;
+    }
+    .page-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--teal), var(--teal2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero p { color: rgba(255,255,255,0.56); font-size: 1.08rem; line-height: 1.75; }
+
+    /* CONTACT LAYOUT */
+    .contact-section { background: var(--mist); padding: 7rem 2rem; }
+    .contact-inner {
+      max-width: 1100px; margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    @media (max-width: 840px) {
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+
+    /* INFO PANEL */
+    .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-info-header .section-label { display: block; margin-bottom: 0.5rem; }
+    .contact-info-header .section-title { margin-bottom: 0.8rem; }
+    .contact-info-header p { color: #6b7280; font-size: 0.95rem; line-height: 1.7; }
+
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .info-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
+    .info-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(0,201,167,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--teal);
+    }
+    .info-text strong {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--slate); display: block; margin-bottom: 0.2rem;
+    }
+    .info-text span { font-size: 0.85rem; color: #6b7280; }
+
+    .social-row {
+      display: flex; gap: 0.8rem; margin-top: 0.5rem;
+    }
+    .social-btn {
+      width: 42px; height: 42px;
+      background: var(--card-bg);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #6b7280; font-size: 1rem;
+      text-decoration: none;
+      transition: background .2s, color .2s, border-color .2s, transform .2s;
+    }
+    .social-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); transform: translateY(-2px); }
+
+    /* FORM PANEL */
+    .form-panel {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 20px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+    }
+    .form-panel h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      color: var(--slate); margin-bottom: 0.4rem;
+    }
+    .form-panel .form-sub {
+      font-size: 0.88rem; color: #9ca3af; margin-bottom: 1.8rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 500px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .required-star { color: #ef4444; margin-left: 2px; }
+
+    /* Submit button full width */
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--teal), #007a60);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      padding: 0.95rem;
+      border: none; border-radius: 100px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      box-shadow: 0 8px 28px rgba(0,201,167,0.3);
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,201,167,0.42); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* spinner */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-label { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* success state */
+    .success-overlay {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1rem;
+      padding: 3rem 1rem;
+    }
+    .success-overlay.show { display: flex; }
+    .success-check {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: #fff;
+      animation: popIn .4s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.6); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .success-overlay h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800; color: var(--slate);
+    }
+    .success-overlay p { font-size: 0.9rem; color: #6b7280; line-height: 1.6; }
+    .btn-reset {
+      background: none; border: 1.5px solid var(--teal);
+      color: var(--teal); font-family: 'Syne', sans-serif;
+      font-weight: 600; font-size: 0.88rem;
+      padding: 0.6rem 1.4rem; border-radius: 100px;
+      cursor: pointer; transition: background .2s, color .2s;
+    }
+    .btn-reset:hover { background: var(--teal); color: #fff; }
+
+    /* FAQ */
+    .faq-section { background: #fff; padding: 7rem 2rem; }
+    .faq-inner { max-width: 760px; margin: auto; }
+    .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item {
+      background: var(--mist);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; padding: 1.2rem 1.5rem;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.97rem; font-weight: 700; color: var(--slate);
+      text-align: left; gap: 1rem;
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--teal); }
+    .faq-q i { font-size: 0.8rem; flex-shrink: 0; transition: transform .3s; }
+    .faq-item.open .faq-q i { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .25s;
+      padding: 0 1.5rem;
+      font-size: 0.9rem; color: #6b7280; line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 1.5rem 1.3rem; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-layer-group"></i>Main<span>Crafts</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge anim-1"><i class="fa-solid fa-paper-plane"></i> Get In Touch</div>
+    <h1 class="anim-2">Let's Build<br><em>Something Great</em></h1>
+    <p class="anim-3">Whether you have a project in mind, a question about our services, or just want to say hello — we'd love to hear from you.</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="contact-inner">
+
+    <!-- LEFT: Info -->
+    <div class="contact-info">
+      <div class="contact-info-header">
+        <span class="section-label">Contact Info</span>
+        <h2 class="section-title">We're here<br>to help</h2>
+        <p>Reach out through the form, or use any of the channels below. We typically respond within one business day.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="info-text">
+          <strong>Email Us</strong>
+          <span>hr@maincrafts.com</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="info-text">
+          <strong>Website</strong>
+          <span>www.maincrafts.com</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="info-text">
+          <strong>Response Time</strong>
+          <span>Within 1 business day</span>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="info-text">
+          <strong>Headquarters</strong>
+          <span>Bengaluru, India · Remote-first</span>
+        </div>
+      </div>
+
+      <div class="social-row">
+        <a href="#" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" class="social-btn" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-panel">
+      <!-- Form content -->
+      <div id="formWrap">
+        <h3>Send us a message</h3>
+        <p class="form-sub">Fields marked <span style="color:#ef4444">*</span> are required.</p>
+
+        <form name="contactForm" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name <span class="required-star">*</span></label>
+              <input type="text" id="fname" name="fname" placeholder="Arjun" autocomplete="given-name"/>
+              <span class="error-msg" id="fname-err"><i class="fa-solid fa-circle-exclamation"></i> Please enter your first name.</span>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Reddy" autocomplete="family-name"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="required-star">*</span></label>
+            <input type="email" id="email" name="email" placeholder="arjun@example.com" autocomplete="email"/>
+            <span class="error-msg" id="email-err"><i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject <span class="required-star">*</span></label>
+            <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Job Application / General Question"/>
+            <span class="error-msg" id="subject-err"><i class="fa-solid fa-circle-exclamation"></i> Please enter a subject.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message <span class="required-star">*</span></label>
+            <textarea id="message" name="message" placeholder="Tell us about your project, timeline, and any specific requirements..."></textarea>
+            <span class="error-msg" id="message-err"><i class="fa-solid fa-circle-exclamation"></i> Please enter your message (at least 10 characters).</span>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <div class="spinner"></div>
+            <span class="btn-label"><i class="fa-solid fa-paper-plane"></i> &nbsp;Send Message</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success overlay (hidden by default) -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-check"><i class="fa-solid fa-check"></i></div>
+        <h4>Message Sent!</h4>
+        <p>Thanks for reaching out. We'll get back to you at the email provided within one business day.</p>
+        <button class="btn-reset" onclick="resetForm()">Send Another Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">Common questions</h2>
+    <p class="section-sub">Can't find what you're looking for? Send us a message above.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does a typical project take? <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">It depends on scope. A standard website takes 4–8 weeks. A full product build can take 3–6 months. We'll give you a realistic timeline after our first discovery call.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you work with international clients? <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">Absolutely. We're a remote-first team and have worked with clients across 15+ countries. We're comfortable working across time zones and use async communication tools to keep things smooth.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Are internship positions paid? <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">Yes. All MainCrafts internship programs are paid and come with mentorship, real project experience, and a completion certificate. Reach out via the form above for current openings.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What technologies does MainCrafts use? <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">Our stack includes React, Next.js, Node.js, Python (Django/FastAPI), PostgreSQL, and various cloud platforms (AWS, GCP). We choose the right tool for each job, not just what we know best.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Main<span>Crafts</span> Technology</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">© 2025 MainCrafts Technology. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ══════════════ JAVASCRIPT ══════════════ -->
+<script>
+  /* ── Hamburger ── */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    })
+  );
+
+  /* ── FAQ accordion ── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ── Form Validation ── */
+  const form      = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function getVal(id) { return document.getElementById(id).value.trim(); }
+
+  function setError(fieldId, errId, show) {
+    const field = document.getElementById(fieldId);
+    const err   = document.getElementById(errId);
+    if (show) {
+      field.classList.add('error');
+      err.classList.add('visible');
+    } else {
+      field.classList.remove('error');
+      err.classList.remove('visible');
+    }
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  /* Live clear errors on input */
+  ['fname', 'email', 'subject', 'message'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById(id).classList.remove('error');
+      const errEl = document.getElementById(id + '-err');
+      if (errEl) errEl.classList.remove('visible');
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fname   = getVal('fname');
+    const email   = getVal('email');
+    const subject = getVal('subject');
+    const message = getVal('message');
+
+    let valid = true;
+
+    // Name validation
+    if (!fname) {
+      setError('fname', 'fname-err', true);
+      valid = false;
+    } else {
+      setError('fname', 'fname-err', false);
+    }
+
+    // Email validation
+    if (!email || !validateEmail(email)) {
+      setError('email', 'email-err', true);
+      valid = false;
+    } else {
+      setError('email', 'email-err', false);
+    }
+
+    // Subject validation
+    if (!subject) {
+      setError('subject', 'subject-err', true);
+      valid = false;
+    } else {
+      setError('subject', 'subject-err', false);
+    }
+
+    // Message validation (min 10 chars)
+    if (!message || message.length < 10) {
+      setError('message', 'message-err', true);
+      valid = false;
+    } else {
+      setError('message', 'message-err', false);
+    }
+
+    if (!valid) {
+      // Scroll to first error
+      const firstErr = form.querySelector('.error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Simulate submission
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      // Show success
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successOverlay').classList.add('show');
+    }, 1500);
+  });
+
+  function resetForm() {
+    form.reset();
+    document.getElementById('formWrap').style.display = 'block';
+    document.getElementById('successOverlay').classList.remove('show');
+    ['fname', 'email', 'subject', 'message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('error');
+    });
+    document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('visible'));
+  }
+</script>
+</body>
+</html>

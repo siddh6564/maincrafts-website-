@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MainCrafts – About Us</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── ABOUT-PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #0d0d0d 0%, #0f2027 50%, #1a3a3a 100%);
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 70% 40%, rgba(0,201,167,0.18), transparent);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 2; max-width: 680px; margin: auto; }
+    .page-hero .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,201,167,0.14);
+      border: 1px solid rgba(0,201,167,0.32);
+      color: var(--teal);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 1.1rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800; color: #fff;
+      line-height: 1.1; letter-spacing: -1px;
+      margin-bottom: 1.2rem;
+    }
+    .page-hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--teal), var(--teal2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero p {
+      color: rgba(255,255,255,0.58);
+      font-size: 1.1rem; line-height: 1.75;
+    }
+
+    /* MISSION */
+    .mission-section {
+      background: var(--mist);
+      padding: 7rem 2rem;
+    }
+    .mission-inner {
+      max-width: 1200px; margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .mission-text .section-label { display: block; margin-bottom: 0.6rem; }
+    .mission-text p {
+      color: #4b5563; line-height: 1.8; font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .mission-text p:last-child { margin-bottom: 0; }
+
+    .mission-visual {
+      background: var(--slate);
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .mission-stat {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      transition: background .2s;
+    }
+    .mission-stat:hover { background: rgba(0,201,167,0.08); border-color: rgba(0,201,167,0.25); }
+    .mission-stat i { font-size: 1.4rem; color: var(--teal); width: 28px; flex-shrink: 0; }
+    .mission-stat-text strong {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      color: #fff; display: block;
+    }
+    .mission-stat-text span { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+
+    @media (max-width: 768px) {
+      .mission-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* VALUES */
+    .values-section { background: #fff; padding: 7rem 2rem; }
+    .values-inner { max-width: 1200px; margin: auto; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: var(--mist);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: var(--radius);
+      padding: 2rem 1.8rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.07); }
+    .value-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; color: #fff;
+      margin-bottom: 1.1rem;
+    }
+    .value-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--slate); margin-bottom: 0.5rem;
+    }
+    .value-card p { font-size: 0.87rem; color: #6b7280; line-height: 1.65; }
+
+    /* TEAM */
+    .team-section { background: var(--mist); padding: 7rem 2rem; }
+    .team-inner { max-width: 1200px; margin: auto; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .team-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .team-card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(0,0,0,0.09); }
+    .team-avatar {
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--slate));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      color: #fff;
+      margin: 0 auto 1.2rem;
+    }
+    .team-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--slate);
+      margin-bottom: 0.3rem;
+    }
+    .team-card .role { font-size: 0.82rem; color: var(--teal); font-weight: 600; margin-bottom: 0.8rem; }
+    .team-card p { font-size: 0.83rem; color: #6b7280; line-height: 1.6; }
+
+    /* CTA BAND */
+    .about-cta {
+      background: linear-gradient(120deg, #00c9a7, #007a60);
+      padding: 5.5rem 2rem; text-align: center;
+    }
+    .about-cta h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; color: #fff; margin-bottom: 0.9rem;
+    }
+    .about-cta p { color: rgba(255,255,255,0.76); font-size: 1.05rem; margin-bottom: 2rem; }
+    .btn-white {
+      background: #fff; color: #007a60;
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; padding: 0.9rem 2.4rem;
+      border: none; border-radius: 100px;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <i class="fa-solid fa-layer-group"></i>Main<span>Crafts</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge anim-1"><i class="fa-solid fa-users"></i> Our Story</div>
+    <h1 class="anim-2">We Build the Web<br>of <em>Tomorrow</em></h1>
+    <p class="anim-3">MainCrafts was founded on a simple belief: that every great idea deserves world-class digital execution. Meet the team behind the products.</p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission-section">
+  <div class="mission-inner">
+    <div class="mission-text">
+      <span class="section-label">Our Mission</span>
+      <h2 class="section-title">Crafting digital products that make a difference</h2>
+      <p>MainCrafts was founded in 2019 by a group of engineers and designers who believed that too many great ideas were being let down by mediocre execution. We set out to fix that.</p>
+      <p>Today we are a 40-person team spanning design, engineering, and strategy. We've shipped over 200 products for startups, scale-ups, and enterprise clients across 15+ countries.</p>
+      <p>Our process is simple: understand deeply, design boldly, build precisely. We don't just deliver code — we deliver outcomes.</p>
+      <br>
+      <a href="contact.html" class="btn-primary"><i class="fa-solid fa-paper-plane"></i>Work With Us</a>
+    </div>
+    <div class="mission-visual">
+      <div class="mission-stat">
+        <i class="fa-solid fa-rocket"></i>
+        <div class="mission-stat-text"><strong>200+</strong><span>Products Shipped</span></div>
+      </div>
+      <div class="mission-stat">
+        <i class="fa-solid fa-globe"></i>
+        <div class="mission-stat-text"><strong>15+</strong><span>Countries Served</span></div>
+      </div>
+      <div class="mission-stat">
+        <i class="fa-solid fa-users"></i>
+        <div class="mission-stat-text"><strong>40+</strong><span>Team Members</span></div>
+      </div>
+      <div class="mission-stat">
+        <i class="fa-solid fa-star"></i>
+        <div class="mission-stat-text"><strong>98%</strong><span>Client Satisfaction</span></div>
+      </div>
+      <div class="mission-stat">
+        <i class="fa-solid fa-calendar"></i>
+        <div class="mission-stat-text"><strong>Since 2019</strong><span>Years in Operation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-inner">
+    <p class="section-label">What We Stand For</p>
+    <h2 class="section-title">Our core values</h2>
+    <p class="section-sub">These aren't slogans. They are the principles that guide every decision we make — from hiring to code review to client communication.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Craft Over Speed</h3>
+        <p>We build things right the first time. Quality is never negotiable, even under deadline pressure.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Radical Transparency</h3>
+        <p>No surprises. We communicate openly about progress, blockers, and bad news — early and honestly.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-users-gear"></i></div>
+        <h3>Client Partnership</h3>
+        <p>We treat our clients as co-builders. Their success is our success, and we work accordingly.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="fa-solid fa-seedling"></i></div>
+        <h3>Continuous Growth</h3>
+        <p>We invest in our people, our processes, and our tools. Learning never stops here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="team-inner">
+    <p class="section-label">Meet The Team</p>
+    <h2 class="section-title">The people behind the craft</h2>
+    <p class="section-sub">A diverse team of builders, designers, and strategists united by a love of great products.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">AR</div>
+        <h4>Arjun Reddy</h4>
+        <p class="role">CEO & Co-Founder</p>
+        <p>Ex-Google engineer with 12 years building products at scale. Leads strategy and vision.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: linear-gradient(135deg, #f59e0b, #dc2626);">SK</div>
+        <h4>Sana Khan</h4>
+        <p class="role">Head of Design</p>
+        <p>Award-winning product designer. Believes every pixel has a purpose.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: linear-gradient(135deg, #6366f1, #0d0d0d);">MT</div>
+        <h4>Marcus Tran</h4>
+        <p class="role">Lead Engineer</p>
+        <p>Full-stack expert. Obsessed with performance, accessibility, and clean architecture.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background: linear-gradient(135deg, #00c9a7, #1a3a3a);">PJ</div>
+        <h4>Priya Joshi</h4>
+        <p class="role">Head of Growth</p>
+        <p>Data-driven growth strategist. Turns metrics into roadmaps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <h2>Interested in joining the team?</h2>
+  <p>We're always looking for talented people who care about craft. Check our open roles or just say hello.</p>
+  <a href="contact.html" class="btn-white"><i class="fa-solid fa-envelope"></i>Get In Touch</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Main<span>Crafts</span> Technology</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">© 2025 MainCrafts Technology. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    })
+  );
+</script>
+</body>
+</html>
